@@ -13,13 +13,13 @@ function StoreonVue (Vue) {
       }
 
       Vue.util.defineReactive(this.$storeon, key, this.$storeon.get())
-      this._subscription = this.$storeon.on('@changed', function (value) {
+      this._unbind = this.$storeon.on('@changed', function (value) {
         vm.$storeon[key] = value
       })
     },
     beforeDestroy: function () {
-      if (this._subscription) {
-        this._subscription.unsubscribe()
+      if (this._unbind) {
+        this._unbind()
       }
     }
   })
