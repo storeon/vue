@@ -4,7 +4,7 @@
 
 A tiny connector for [Storeon] and [Vue]. ([Demo])
 
-Size is only 158 bytes (minified and gzipped). It uses [Size Limit] to control size.
+Size is only 190 bytes (minified and gzipped). It uses [Size Limit] to control size.
 
 Read more about Storeon [article].
 
@@ -59,14 +59,14 @@ new Vue({
 ```
 
 By providing the `store` option to the root instance, the store will be injected
-into all child components of the root and will be available on them as `this.$storeon`
+into all child components of the root and will be available on them as `this.$storeon`. With `storeon` property you can map your state to the `this.state` passing an array of keys.
 
 #### `App.vue`
 
 ```html
 <template>
   <div>
-    <h1>The count is {{count}}</h1>
+    <h1>The count is {{state.count}}</h1>
     <button @click="dec">-</button>
     <button @click="inc">+</button>
   </div>
@@ -75,11 +75,7 @@ into all child components of the root and will be available on them as `this.$st
 <script>
 export default {
   name: "app",
-  computed: {
-    count () {
-      return this.$storeon.state.count
-    }
-  },
+  storeon: ['count'],
   methods: {
     inc() {
       this.$storeon.dispatch("inc")

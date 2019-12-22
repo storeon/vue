@@ -1,26 +1,34 @@
 function StoreonVue (Vue) {
   Vue.mixin({
     beforeCreate: function () {
-      var store = this.$options.store
-      var parent = this.$options.parent
-      var key = 'state'
       var vm = this
+      var store = vm.$options.store
+      var parent = vm.$options.parent
+      var state = 'state'
 
       if (store) {
-        this.$storeon = store
+        vm.$storeon = store
       } else if (parent && parent.$storeon) {
-        this.$storeon = parent.$storeon
+        vm.$storeon = parent.$storeon
       }
 
-      Vue.util.defineReactive(this.$storeon, key, this.$storeon.get())
-      this._unbind = this.$storeon.on('@changed', function (value) {
-        vm.$storeon[key] = value
-      })
+      if (Array.isArray(vm.$options.storeon)) {
+        vm[state] = {}
+        var shape = vm.$options.storeon
+
+        shape.forEach(function (key) {
+          Vue.util.defineReactive(vm[state], key, vm.$storeon.get()[key])
+        })
+
+        vm._unbind = vm.$storeon.on('@changed', function (value) {
+          shape.forEach(function (key) {
+            vm[state][key] = value[key]
+          })
+        })
+      }
     },
     beforeDestroy: function () {
-      if (this._unbind) {
-        this._unbind()
-      }
+      this._unbind && this._unbind()
     }
   })
 };

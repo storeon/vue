@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>The count is {{count}}</h1>
+    <h1>The count is {{state.count}}</h1>
     <button @click="dec">-</button>
     <button @click="inc">+</button>
   </div>
@@ -9,11 +9,7 @@
 <script>
 export default {
   name: 'app',
-  computed: {
-    count () {
-      return this.$storeon.state.count
-    }
-  },
+  storeon: ['count'],
   methods: {
     inc() {
       this.$storeon.dispatch('inc')
