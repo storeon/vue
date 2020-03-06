@@ -1,7 +1,7 @@
 {
   "name": "storeon-vue",
   "version": "0.1.0",
-  "description": "A tiny connector for Storeon and Vue",
+  "description": "A tiny (135 bytes) connector for Storeon and Vue",
   "main": "index.js",
   "scripts": {
     "start": "parcel serve example/index.html --open",
@@ -18,29 +18,35 @@
     "url": "https://github.com/distolma/storeon-vue/issues"
   },
   "homepage": "https://github.com/distolma/storeon-vue#readme",
+  "dependencies": {
+    "storeon": "^1.0.0",
+    "vue": "^2.6.11",
+    "vue-hot-reload-api": "^2.3.4"
+  },
   "devDependencies": {
-    "@logux/eslint-config": "^35.0.3",
-    "@size-limit/preset-small-lib": "^2.2.4",
-    "@vue/component-compiler-utils": "^3.1.0",
+    "@logux/eslint-config": "^36.0.0",
+    "@size-limit/preset-small-lib": "^4.1.1",
+    "@vue/component-compiler-utils": "^3.1.1",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-es5": "^1.4.1",
-    "eslint-plugin-import": "^2.19.1",
-    "eslint-plugin-jest": "^23.2.0",
+    "eslint-plugin-es5": "^1.5.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jest": "^23.8.2",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-prefer-let": "^1.0.1",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-standard": "^4.0.1",
-    "eslint-plugin-unicorn": "^15.0.1",
-    "husky": "^3.1.0",
-    "jest": "^24.9.0",
-    "lint-staged": "^9.5.0",
+    "eslint-plugin-unicorn": "^16.1.1",
+    "husky": "^4.2.3",
+    "jest": "^25.1.0",
+    "lint-staged": "^10.0.8",
     "parcel-bundler": "^1.12.4",
+    "size-limit": "^4.1.1",
     "vue-template-compiler": "^2.6.11"
   },
   "peerDependencies": {
-    "storeon": "^0.9.7"
+    "storeon": "^1.0.0"
   },
   "lint-staged": {
     "*.js": [
@@ -59,20 +65,14 @@
   "size-limit": [
     {
       "path": "index.js",
-      "limit": "190 B"
+      "limit": "135 B"
     }
   ],
   "eslintConfig": {
-    "extends": "@logux/eslint-config/browser"
+    "extends": "@logux/eslint-config"
   },
   "eslintIgnore": [
     "node_modules",
-    "example",
-    "index.test.js"
-  ],
-  "dependencies": {
-    "storeon": "^0.9.7",
-    "vue": "^2.6.11",
-    "vue-hot-reload-api": "^2.3.4"
-  }
+    "example"
+  ]
 }
