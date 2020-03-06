@@ -91,6 +91,6 @@ export default {
 ```
 
 ## TODO
-- [] add tests
-- [] add types
-- [] rich example
+- [ ] add tests
+- [ ] add types
+- [ ] rich example
