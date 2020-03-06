@@ -2,6 +2,9 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.2.2
+- Remove unnecessary type declarations ([d67d76](https://github.com/distolma/storeon-vue/commit/d67d765e1d09470b4260cfd9be20b61a6f4d2143))
+
 ## 0.2.1
 - Add type definitions ([3bd245](https://github.com/distolma/storeon-vue/commit/3bd245319cc3c7f76d924f322d814f5fba683434))
 
