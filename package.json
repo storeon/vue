@@ -74,5 +74,10 @@
   "eslintIgnore": [
     "node_modules",
     "example"
+  ],
+  "keywords": [
+    "vue",
+    "storeon",
+    "state"
   ]
 }

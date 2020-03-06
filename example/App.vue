@@ -8,8 +8,6 @@
 
 <script>
 export default {
-  name: 'app',
-  storeon: ['count'],
   methods: {
     inc() {
       this.$storeon.dispatch('inc')

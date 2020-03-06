@@ -1,36 +1,24 @@
-function StoreonVue (Vue) {
+module.exports = function StoreonVue (Vue) {
   Vue.mixin({
-    beforeCreate: function () {
-      var vm = this
-      var store = vm.$options.store
-      var parent = vm.$options.parent
-      var state = 'state'
+    beforeCreate () {
+      let state = 'state'
+      let store = this.$options.store
+      let parent = this.$options.parent
 
       if (store) {
-        vm.$storeon = store
+        this.$storeon = store
       } else if (parent && parent.$storeon) {
-        vm.$storeon = parent.$storeon
+        this.$storeon = parent.$storeon
       }
 
-      if (Array.isArray(vm.$options.storeon)) {
-        vm[state] = {}
-        var shape = vm.$options.storeon
+      this[state] = Vue.observable(this.$storeon.get())
 
-        shape.forEach(function (key) {
-          Vue.util.defineReactive(vm[state], key, vm.$storeon.get()[key])
-        })
-
-        vm._unbind = vm.$storeon.on('@changed', function (value) {
-          shape.forEach(function (key) {
-            vm[state][key] = value[key]
-          })
-        })
-      }
+      this._unbind = this.$storeon.on('@changed', (_, changed) => {
+        Object.assign(this[state], changed)
+      })
     },
-    beforeDestroy: function () {
+    beforeDestroy () {
       this._unbind && this._unbind()
     }
   })
-};
-
-module.exports = { StoreonVue: StoreonVue }
+}

@@ -4,7 +4,7 @@
 
 A tiny connector for [Storeon] and [Vue]. ([Demo])
 
-Size is only 190 bytes (minified and gzipped). It uses [Size Limit] to control size.
+Size is only 135 bytes (minified and gzipped). It uses [Size Limit] to control size.
 
 Read more about Storeon [article].
 
@@ -18,7 +18,11 @@ Read more about Storeon [article].
 ## Install
 
 ```sh
-npm install storeon storeon-vue -S
+npm install storeon-vue -S
+```
+or
+```sh
+yarn add storeon-vue
 ```
 
 ## How to use
@@ -27,39 +31,39 @@ Create a store with `storeon` as you do it usually. You must explicitly install 
 
 #### `store.js`
 
-```javascript
-import Vue from "vue";
-import createStore from "storeon";
-import { StoreonVue } from "storeon-vue";
+```js
+import Vue from 'vue'
+import createStore from 'storeon'
+import StoreonVue from 'storeon-vue'
 
-Vue.use(StoreonVue);
+Vue.use(StoreonVue)
 
 let counter = store => {
-  store.on("@init", () => ({ count: 0 }));
-  store.on("inc", ({ count }) => ({ count: count + 1 }));
-  store.on("dec", ({ count }) => ({ count: count - 1 }));
-};
+  store.on('@init', () => ({ count: 0 }))
+  store.on('inc', ({ count }) => ({ count: count + 1 }))
+  store.on('dec', ({ count }) => ({ count: count - 1 }))
+}
 
-export const store = createStore([counter]);
+export const store = createStore([counter])
 ```
 
 #### `index.js`
 
 Library provides a mechanism to "inject" the store into all child components from the root component with the `store` option:
 
-```javascript
-import Vue from "vue";
-import App from "./App.vue";
-import { store } from "./store";
+```js
+import Vue from 'vue'
+import App from './App.vue'
+import { store } from './store'
 
 new Vue({
   store,
   render: h => h(App)
-}).$mount("#app");
+}).$mount('#app')
 ```
 
 By providing the `store` option to the root instance, the store will be injected
-into all child components of the root and will be available on them as `this.$storeon`. With `storeon` property you can map your state to the `this.state` passing an array of keys.
+into all child components of the root and will be available on them as `this.$storeon`.
 
 #### `App.vue`
 
@@ -74,16 +78,19 @@ into all child components of the root and will be available on them as `this.$st
 
 <script>
 export default {
-  name: "app",
-  storeon: ['count'],
   methods: {
     inc() {
-      this.$storeon.dispatch("inc")
+      this.$storeon.dispatch('inc')
     },
     dec() {
-      this.$storeon.dispatch("dec")
+      this.$storeon.dispatch('dec')
     }
   }
 };
 </script>
 ```
+
+## TODO
+- [] add tests
+- [] add types
+- [] rich example
