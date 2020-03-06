@@ -94,14 +94,12 @@ export default {
 
 Plugin add to Vue’s global/instance properties and component options. In these cases, type declarations are needed to make plugins compile in TypeScript. We can declare an instance property `$storeon` and `state` with type `Store<State, Events>`. You can also declare component options `store`:
 
-#### `shims-tsx.d.ts`
+#### `typing.d.ts`
 
 ```ts
-import Vue, { VNode, ComponentOptions } from 'vue'
+import Vue, { ComponentOptions } from 'vue'
 import { Store } from 'storeon'
 import { State, Events } from './store'
-
-// ...
 
 declare module 'vue/types/options' {
   interface ComponentOptions<V extends Vue> {
