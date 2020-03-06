@@ -2,12 +2,14 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.2.1
+- Add type definitions ([3bd245](https://github.com/distolma/storeon-vue/commit/3bd245319cc3c7f76d924f322d814f5fba683434))
+
 ## 0.2.0
 - Simplify API ([773929](https://github.com/distolma/storeon-vue/commit/773929714f27dd0ca78ed72b6f8ade6d4bde5f37))
 
 ## 0.1.0
 - change api to avoid component re-render ([2b9a97](https://github.com/distolma/storeon-vue/commit/2b9a9750763bfdab7585851500defd512f3a8422))
-
 
 ## 0.0.1
 
