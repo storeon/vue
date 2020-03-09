@@ -33,8 +33,8 @@ Create a store with `storeon` as you do it usually. You must explicitly install 
 
 ```js
 import Vue from 'vue'
-import createStore from 'storeon'
-import StoreonVue from 'storeon-vue'
+import { createStoreon } from 'storeon'
+import { StoreonVue } from 'storeon-vue'
 
 Vue.use(StoreonVue)
 
@@ -44,7 +44,7 @@ let counter = store => {
   store.on('dec', ({ count }) => ({ count: count - 1 }))
 }
 
-export const store = createStore([counter])
+export const store = createStoreon([counter])
 ```
 
 #### `index.js`

@@ -1,4 +1,4 @@
-module.exports = function StoreonVue (Vue) {
+function StoreonVue (Vue) {
   Vue.mixin({
     beforeCreate () {
       let state = 'state'
@@ -22,3 +22,5 @@ module.exports = function StoreonVue (Vue) {
     }
   })
 }
+
+module.exports = { StoreonVue }
