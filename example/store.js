@@ -1,4 +1,4 @@
-import createStore from 'storeon'
+import { createStoreon } from 'storeon'
 
 let counter = store => {
   store.on('@init', () => ({ count: 0 }))
@@ -6,4 +6,4 @@ let counter = store => {
   store.on('dec', ({ count }) => ({ count: count - 1 }))
 }
 
-export const store = createStore([counter])
+export const store = createStoreon([counter])
