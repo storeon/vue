@@ -2,6 +2,9 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.3.0
+- Use named export ([3fd201](https://github.com/distolma/storeon-vue/commit/3fd201ea0e199f82fccc0df5f733fa18f16f463a))
+
 ## 0.2.2
 - Remove unnecessary type declarations ([d67d76](https://github.com/distolma/storeon-vue/commit/d67d765e1d09470b4260cfd9be20b61a6f4d2143))
 

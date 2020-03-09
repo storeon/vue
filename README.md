@@ -4,7 +4,7 @@
 
 A tiny connector for [Storeon] and [Vue]. ([Demo])
 
-Size is only 135 bytes (minified and gzipped). It uses [Size Limit] to control size.
+Size is only 145 bytes (minified and gzipped). It uses [Size Limit] to control size.
 
 Read more about Storeon [article].
 

@@ -1,7 +1,7 @@
 {
   "name": "storeon-vue",
-  "version": "0.2.2",
-  "description": "A tiny (135 bytes) connector for Storeon and Vue",
+  "version": "0.3.0",
+  "description": "A tiny (145 bytes) connector for Storeon and Vue",
   "main": "index.js",
   "scripts": {
     "start": "parcel serve example/index.html --open",
