@@ -98,7 +98,7 @@ Plugin add to Vue’s global/instance properties and component options. In these
 
 ```ts
 import Vue, { ComponentOptions } from 'vue'
-import { Store } from 'storeon'
+import { StoreonStore } from 'storeon'
 import { State, Events } from './store'
 
 declare module 'vue/types/options' {
@@ -109,7 +109,7 @@ declare module 'vue/types/options' {
 
 declare module 'vue/types/vue' {
   interface Vue {
-    $storeon: Store<State, Events>;
+    $storeon: StoreonStore<State, Events>;
     $state: State;
   }
 }
