@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>The count is {{state.count}}</h1>
+    <h1>The count is {{$state.count}}</h1>
     <button @click="dec">-</button>
     <button @click="inc">+</button>
   </div>

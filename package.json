@@ -1,12 +1,12 @@
 {
   "name": "storeon-vue",
   "version": "0.3.0",
-  "description": "A tiny (145 bytes) connector for Storeon and Vue",
+  "description": "A tiny (150 bytes) connector for Storeon and Vue",
   "main": "index.js",
   "scripts": {
     "start": "parcel serve example/index.html --open",
     "lint": "eslint ./*.js",
-    "test": "yarn lint && size-limit"
+    "test": "yarn lint && jest --coverage && size-limit"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
     "@logux/eslint-config": "^36.1.1",
     "@size-limit/preset-small-lib": "^4.3.1",
     "@vue/component-compiler-utils": "^3.1.1",
+    "@vue/test-utils": "^1.0.0-beta.32",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-es5": "^1.5.0",
@@ -64,7 +65,7 @@
   "size-limit": [
     {
       "path": "index.js",
-      "limit": "145 B"
+      "limit": "150 B"
     }
   ],
   "eslintConfig": {
@@ -74,6 +75,9 @@
     "node_modules",
     "example"
   ],
+  "jest": {
+    "coveragePathIgnorePatterns": ["test/utils.js"]
+  },
   "keywords": [
     "vue",
     "storeon",

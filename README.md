@@ -4,7 +4,7 @@
 
 A tiny connector for [Storeon] and [Vue]. ([Demo])
 
-Size is only 145 bytes (minified and gzipped). It uses [Size Limit] to control size.
+Size is only 150 bytes (minified and gzipped). It uses [Size Limit] to control size.
 
 Read more about Storeon [article].
 
@@ -70,7 +70,7 @@ into all child components of the root and will be available on them as `this.$st
 ```html
 <template>
   <div>
-    <h1>The count is {{state.count}}</h1>
+    <h1>The count is {{$state.count}}</h1>
     <button @click="dec">-</button>
     <button @click="inc">+</button>
   </div>
@@ -92,7 +92,7 @@ export default {
 
 ## Using with TypeScript
 
-Plugin add to Vue’s global/instance properties and component options. In these cases, type declarations are needed to make plugins compile in TypeScript. We can declare an instance property `$storeon` and `state` with type `Store<State, Events>`. You can also declare component options `store`:
+Plugin add to Vue’s global/instance properties and component options. In these cases, type declarations are needed to make plugins compile in TypeScript. We can declare an instance property `$storeon` and `$state` with type `Store<State, Events>`. You can also declare component options `store`:
 
 #### `typing.d.ts`
 
@@ -110,11 +110,10 @@ declare module 'vue/types/options' {
 declare module 'vue/types/vue' {
   interface Vue {
     $storeon: Store<State, Events>;
-    state: State;
+    $state: State;
   }
 }
 ```
 
 ## TODO
-- [ ] add tests
 - [ ] rich example
