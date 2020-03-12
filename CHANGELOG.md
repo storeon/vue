@@ -2,6 +2,10 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.4.0
+- Move to Storeon org ([7bd0a9](https://github.com/storeon/vue/commit/7bd0a95f31e018b3cefcf1a2fd6e769db13d29f7))
+- Optimise perfomance ([bf23f3](https://github.com/storeon/vue/commit/bf23f3b7809ca815a839bb8350acce0b457ad036))
+
 ## 0.3.0
 - Use named export ([3fd201](https://github.com/storeon/vue/commit/3fd201ea0e199f82fccc0df5f733fa18f16f463a))
 

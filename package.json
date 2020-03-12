@@ -1,6 +1,6 @@
 {
   "name": "@storeon/vue",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A tiny (150 bytes) connector for Storeon and Vue",
   "main": "index.js",
   "scripts": {
