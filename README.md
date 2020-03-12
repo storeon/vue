@@ -18,23 +18,23 @@ Read more about Storeon [article].
 ## Install
 
 ```sh
-npm install storeon-vue -S
+npm install @storeon/vue -S
 ```
 or
 ```sh
-yarn add storeon-vue
+yarn add @storeon/vue
 ```
 
 ## How to use
 
-Create a store with `storeon` as you do it usually. You must explicitly install `storeon-vue` via `Vue.use()`.
+Create a store with `storeon` as you do it usually. You must explicitly install `@storeon/vue` via `Vue.use()`.
 
 #### `store.js`
 
 ```js
 import Vue from 'vue'
 import { createStoreon } from 'storeon'
-import { StoreonVue } from 'storeon-vue'
+import { StoreonVue } from '@storeon/vue'
 
 Vue.use(StoreonVue)
 

@@ -1,5 +1,5 @@
 {
-  "name": "storeon-vue",
+  "name": "@storeon/vue",
   "version": "0.3.0",
   "description": "A tiny (150 bytes) connector for Storeon and Vue",
   "main": "index.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/distolma/storeon-vue.git"
+    "url": "git+https://github.com/storeon/vue.git"
   },
   "author": "Dmytro Mostovyi <djmakaron2009@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/distolma/storeon-vue/issues"
+    "url": "https://github.com/storeon/vue/issues"
   },
-  "homepage": "https://github.com/distolma/storeon-vue#readme",
+  "homepage": "https://github.com/storeon/vue#readme",
   "peerDependencies": {
     "storeon": "^2.0.0",
     "vue": "^2.6.0"
