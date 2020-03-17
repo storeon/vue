@@ -8,6 +8,16 @@ Size is only 150 bytes (minified and gzipped). It uses [Size Limit] to control s
 
 Read more about Storeon [article].
 
+## Why?
+
+[Storeon] is a tiny event-based Redux-like state manager without dependencies. `@storeon/vue` package helps to connect store with [Vue] to provide a better performance and developer experience while remaining so tiny.
+
+- **Size**. 150 bytes (+ Storeon itself) instead of ~3kB of [Vuex] (minified and gzipped).
+- **Ecosystem**. Many additional [tools] can be combined with a store.
+- **Speed**. It tracks what parts of state were changed and re-renders only components based on the changes.
+
+[vue]: https://github.com/vuejs/vue
+[vuex]: https://github.com/vuejs/vuex
 [storeon]: https://github.com/storeon/storeon
 [tools]: https://github.com/storeon/storeon#tools
 [vue]: https://github.com/vuejs/vue
@@ -92,7 +102,7 @@ export default {
 
 ## Using with TypeScript
 
-Plugin add to Vue’s global/instance properties and component options. In these cases, type declarations are needed to make plugins compile in TypeScript. We can declare an instance property `$storeon` and `$state` with type `Store<State, Events>`. You can also declare component options `store`:
+Plugin add to Vue’s global/instance properties and component options. In these cases, type declarations are needed to make plugins compile in TypeScript. We can declare an instance property `$storeon` and `$state` with type `StoreonStore<State, Events>`. You can also declare component options `store`:
 
 #### `typing.d.ts`
 
@@ -103,7 +113,7 @@ import { State, Events } from './store'
 
 declare module 'vue/types/options' {
   interface ComponentOptions<V extends Vue> {
-    store: Store<State, Events>;
+    store: StoreonStore<State, Events>;
   }
 }
 
