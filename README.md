@@ -1,5 +1,8 @@
 # Storeon Vue
 
+[![npm version](https://badge.fury.io/js/%40storeon%2Fvue.svg)](https://www.npmjs.com/package/@storeon/vue)
+[![Build Status](https://travis-ci.org/storeon/vue.svg?branch=master)](https://travis-ci.org/storeon/vue)
+
 <img src="https://storeon.github.io/storeon/logo.svg" align="right" alt="Storeon logo by Anton Lovchikov" width="160" height="142">
 
 A tiny connector for [Storeon] and [Vue]. ([Demo])
