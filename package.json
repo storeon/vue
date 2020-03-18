@@ -19,17 +19,16 @@
   },
   "homepage": "https://github.com/storeon/vue#readme",
   "peerDependencies": {
-    "storeon": "^2.0.0",
-    "vue": "^2.6.0"
+    "storeon": "^2.0.1",
+    "vue": "^2.6.11"
   },
   "devDependencies": {
     "@logux/eslint-config": "^36.1.1",
-    "@size-limit/preset-small-lib": "^4.3.1",
+    "@size-limit/preset-small-lib": "^4.4.0",
     "@vue/component-compiler-utils": "^3.1.1",
     "@vue/test-utils": "^1.0.0-beta.32",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-es5": "^1.5.0",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-jest": "^23.8.2",
     "eslint-plugin-node": "^11.0.0",
@@ -37,12 +36,12 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-standard": "^4.0.1",
-    "eslint-plugin-unicorn": "^17.0.1",
+    "eslint-plugin-unicorn": "^17.2.0",
     "husky": "^4.2.3",
     "jest": "^25.1.0",
     "lint-staged": "^10.0.8",
     "parcel-bundler": "^1.12.4",
-    "size-limit": "^4.3.1",
+    "size-limit": "^4.4.0",
     "storeon": "^2.0.1",
     "vue": "^2.6.11",
     "vue-hot-reload-api": "^2.3.4",
@@ -76,7 +75,9 @@
     "example"
   ],
   "jest": {
-    "coveragePathIgnorePatterns": ["test/utils.js"]
+    "coveragePathIgnorePatterns": [
+      "test/utils.js"
+    ]
   },
   "keywords": [
     "vue",
