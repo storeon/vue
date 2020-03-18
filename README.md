@@ -32,7 +32,7 @@ or
 yarn add @storeon/vue
 ```
 
-## How to use
+## How to use ([Demo])
 
 Create a store with `storeon` as you do it usually. You must explicitly install `@storeon/vue` via `Vue.use()`.
 
