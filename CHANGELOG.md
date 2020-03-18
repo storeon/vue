@@ -2,6 +2,9 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.5.0
+- Use dual-publish for ESModules ([a1a76c](https://github.com/storeon/vue/commit/a1a76c0b3c7197d661e133f64cc4ea770e50c247))
+
 ## 0.4.0
 - Move to Storeon org ([7bd0a9](https://github.com/storeon/vue/commit/7bd0a95f31e018b3cefcf1a2fd6e769db13d29f7))
 - Optimise perfomance ([bf23f3](https://github.com/storeon/vue/commit/bf23f3b7809ca815a839bb8350acce0b457ad036))
