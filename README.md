@@ -121,6 +121,3 @@ declare module 'vue/types/vue' {
   }
 }
 ```
-
-## TODO
-- [ ] rich example
