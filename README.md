@@ -7,7 +7,7 @@
 
 [Storeon] is a tiny event-based Redux-like state manager without dependencies. `@storeon/vue` package helps to connect store with [Vue] to provide a better performance and developer experience while remaining so tiny.
 
-- **Size**. 150 bytes (+ Storeon itself) instead of ~3kB of [Vuex] (minified and gzipped).
+- **Size**. 136 bytes (+ Storeon itself) instead of ~3kB of [Vuex] (minified and gzipped).
 - **Ecosystem**. Many additional [tools] can be combined with a store.
 - **Speed**. It tracks what parts of state were changed and re-renders only components based on the changes.
 
