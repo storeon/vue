@@ -25,4 +25,4 @@ interface MapperForAction {
 }
 
 export declare const mapState: Mapper<Computed> & MapperForState;
-export declare const mapActions: Mapper<ActionMethod> & MapperForAction;
+export declare const mapDispatch: Mapper<ActionMethod> & MapperForAction;

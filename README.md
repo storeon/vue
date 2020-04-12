@@ -21,6 +21,8 @@ Read more about Storeon [article].
 [size limit]: https://github.com/ai/size-limit
 [demo]: https://codesandbox.io/s/throbbing-sunset-x27qc
 [article]: https://evilmartians.com/chronicles/storeon-redux-in-173-bytes
+[vscode]: https://github.com/microsoft/vscode
+[vscodium]: https://github.com/VSCodium/vscodium
 
 ## Install
 
@@ -77,7 +79,7 @@ into all child components of the root and will be available on them as `this.$st
 ```html
 <template>
   <div>
-    <h1>The count is {{$state.count}}</h1>
+    <h1>The count is {{$storeon.state.count}}</h1>
     <button @click="dec">-</button>
     <button @click="inc">+</button>
   </div>
@@ -118,7 +120,7 @@ export default {
 }
 ```
 
-We can also pass a string array to `mapState` when the name of a mapped computed property is the same as a state sub tree name.
+We can also pass a string array to `mapState` when the name of a mapped computed property is the same as a state sub-tree name.
 
 ```js
 import { mapState } from '@storeon/vue/helpers'
@@ -155,9 +157,55 @@ export default {
 
 ```
 
+## Using with Class Components
+
+You can specify component options object to `@Component` decorator, so you can just use these helpers.
+
+```html
+<template>
+  <div>
+    <h1>The count is {{bar}}</h1>
+    <button @click="dec">-</button>
+    <button @click="inc">+</button>
+  </div>
+</template>
+
+<script>
+import Vue from 'vue'
+import Component from 'vue-class-component'
+import { mapState, mapDispatch } from '@storeon/vue/helpers'
+
+@Component({
+  computed: mapState({
+    bar: state => state.count
+  }),
+  methods: mapDispatch([
+    'inc', 'dec'
+  ])
+})
+export default class extends Vue { }
+</script>
+```
+
+If you would like to write as more class-like style, use decorators from `@storeon/vue/class`
+
+```js
+import Vue from 'vue'
+import Component from 'vue-class-component'
+import { State, Dispatch } from '@storeon/vue/class'
+
+@Component
+export default class extends Vue {
+  @State count
+  @Dispatch('inc') inc
+  @Dispatch('dec') dec
+}
+</script>
+```
+
 ## Using with TypeScript
 
-Plugin add to Vue’s global/instance properties and component options. In these cases, type declarations are needed to make plugins compile in TypeScript. We can declare an instance property `$storeon` with type `StoreonStore<State, Events>`. You can also declare component options `store`:
+Plugin adds to Vue’s global/instance properties and component options. In these cases, type declarations are needed to make plugins compile in TypeScript. We can declare an instance property `$storeon` with type `StoreonStore<State, Events>`. You can also declare a component options `store`:
 
 #### `typing.d.ts`
 
@@ -191,4 +239,12 @@ To let TypeScript properly infer types inside Vue component options, you need to
     }
   }
 };
+```
+
+:warning: To enable type checking in your template use this flag in the `settings.json` of your [VSCode] or [VSCodium] with `Vetur` plugin. For more information see [Vetur documentation](https://vuejs.github.io/vetur/interpolation.html#generic-language-features)
+
+```json
+{
+  "vetur.experimental.templateInterpolationService": false
+}
 ```

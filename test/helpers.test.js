@@ -4,9 +4,12 @@ const { createStore } = require('./utils')
 const { StoreonVue } = require('../index')
 const { mapState, mapDispatch } = require('../helpers')
 
+beforeAll(() => {
+  Vue.use(StoreonVue)
+})
+
 it('mapState (array)', () => {
   let store = createStore()
-  Vue.use(StoreonVue)
   let vm = new Vue({
     store,
     computed: mapState(['count'])
@@ -18,7 +21,6 @@ it('mapState (array)', () => {
 
 it('mapState (object)', () => {
   let store = createStore()
-  Vue.use(StoreonVue)
   let vm = new Vue({
     store,
     computed: mapState({
@@ -35,7 +37,6 @@ it('mapState (object)', () => {
 it('mapState (with undefined states)', () => {
   jest.spyOn(console, 'error')
   let store = createStore()
-  Vue.use(StoreonVue)
   let vm = new Vue({
     store,
     computed: mapState('foo')
@@ -49,7 +50,6 @@ it('mapState (with undefined states)', () => {
 it('mapDispatch (array)', () => {
   let store = createStore()
   jest.spyOn(store, 'dispatch')
-  Vue.use(StoreonVue)
   let vm = new Vue({
     store,
     methods: mapDispatch(['inc', 'foo/set'])
@@ -64,7 +64,6 @@ it('mapDispatch (array)', () => {
 it('mapDispatch (object)', () => {
   let store = createStore()
   jest.spyOn(store, 'dispatch')
-  Vue.use(StoreonVue)
   let vm = new Vue({
     store,
     methods: mapDispatch({
@@ -83,7 +82,6 @@ it('mapDispatch (object)', () => {
 it('mapDispatch (function)', () => {
   let store = createStore()
   jest.spyOn(store, 'dispatch')
-  Vue.use(StoreonVue)
   let vm = new Vue({
     store,
     methods: mapDispatch({
@@ -100,7 +98,6 @@ it('mapDispatch (with undefined actions)', () => {
   jest.spyOn(console, 'error')
   let store = createStore()
   jest.spyOn(store, 'dispatch')
-  Vue.use(StoreonVue)
   let vm = new Vue({
     store,
     methods: mapDispatch('inc')

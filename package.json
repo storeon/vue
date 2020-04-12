@@ -19,20 +19,37 @@
     "url": "https://github.com/storeon/vue/issues"
   },
   "homepage": "https://github.com/storeon/vue#readme",
+  "keywords": [
+    "vue",
+    "storeon",
+    "state"
+  ],
   "files": [
     "index.d.ts",
-    "helpers/"
+    "helpers/",
+    "class/"
   ],
   "peerDependencies": {
     "storeon": "^2.0.0",
-    "vue": "^2.6.0"
+    "vue": "^2.6.0",
+    "vue-class-component": "^6.0.0 || ^7.0.0"
+  },
+  "peerDependenciesMeta": {
+    "vue-class-component": {
+      "optional": true
+    }
   },
   "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-decorators": "^7.8.3",
     "@logux/eslint-config": "^36.1.2",
     "@size-limit/dual-publish": "^4.4.5",
     "@size-limit/preset-small-lib": "^4.4.5",
     "@vue/component-compiler-utils": "^3.1.2",
     "@vue/test-utils": "^1.0.0-beta.33",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^25.3.0",
     "dual-publish": "^0.10.0",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.1",
@@ -51,6 +68,7 @@
     "size-limit": "^4.4.5",
     "storeon": "^2.0.2",
     "vue": "^2.6.11",
+    "vue-class-component": "^7.2.3",
     "vue-hot-reload-api": "^2.3.4",
     "vue-template-compiler": "^2.6.11"
   },
@@ -83,23 +101,45 @@
         "helpers/index.js": "{ mapState, mapDispatch }"
       },
       "limit": "342 B"
+    },
+    {
+      "name": "core + class",
+      "import": {
+        "index.js": "{ StoreonVue }",
+        "class/index.js": "{ State, Dispatch }"
+      },
+      "limit": "447 B"
     }
   ],
   "eslintConfig": {
+    "parser": "babel-eslint",
     "extends": "@logux/eslint-config"
   },
   "eslintIgnore": [
-    "node_modules",
     "example"
   ],
   "jest": {
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },
     "coveragePathIgnorePatterns": [
       "test/utils.js"
     ]
   },
-  "keywords": [
-    "vue",
-    "storeon",
-    "state"
-  ]
+  "babel": {
+    "plugins": [
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ],
+      [
+        "@babel/plugin-proposal-class-properties",
+        {
+          "loose": false
+        }
+      ]
+    ]
+  }
 }
