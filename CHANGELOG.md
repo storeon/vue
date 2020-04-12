@@ -2,6 +2,10 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.0.0
+- Add support for Class Components ([6e77e0](https://github.com/storeon/vue/commit/6e77e000118f52aa8506a70e583f19a192080d63))
+- Add helper functions ([532121](https://github.com/storeon/vue/commit/532121764a7fa5e61d37e3f8325eccfea4deebf9))
+
 ## 0.5.0
 - Use dual-publish for ESModules ([a1a76c](https://github.com/storeon/vue/commit/a1a76c0b3c7197d661e133f64cc4ea770e50c247))
 
