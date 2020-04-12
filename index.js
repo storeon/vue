@@ -6,14 +6,13 @@ function StoreonVue (Vue) {
 
       if (store) {
         this.$storeon = store
-        this.$state = Vue.observable(store.get())
+        this.$storeon.state = Vue.observable(store.get())
 
         this._unbind = store.on('@changed', (_, changed) => {
-          Object.assign(this.$state, changed)
+          Object.assign(this.$storeon.state, changed)
         })
       } else if (parent && parent.$storeon) {
         this.$storeon = parent.$storeon
-        this.$state = parent.$state
       }
     },
     beforeDestroy () {

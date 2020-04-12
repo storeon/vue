@@ -7,7 +7,7 @@
 
 [Storeon] is a tiny event-based Redux-like state manager without dependencies. `@storeon/vue` package helps to connect store with [Vue] to provide a better performance and developer experience while remaining so tiny.
 
-- **Size**. 136 bytes (+ Storeon itself) instead of ~3kB of [Vuex] (minified and gzipped).
+- **Size**. 160 bytes (+ Storeon itself) instead of ~3kB of [Vuex] (minified and gzipped).
 - **Ecosystem**. Many additional [tools] can be combined with a store.
 - **Speed**. It tracks what parts of state were changed and re-renders only components based on the changes.
 
@@ -97,15 +97,74 @@ export default {
 </script>
 ```
 
+### The `mapState` Helper
+
+When a component needs to make use of multiple store state properties, declaring all these computed properties can get repetitive and verbose. To deal with this we can make use of the `mapState` helper which generates computed getter functions for us, saving us some keystrokes:
+
+```js
+import { mapState } from '@storeon/vue/helpers'
+
+export default {
+  computed: mapState({
+    // arrow functions can make the code very succinct!
+    count: state => state.count,
+    // passing the string value 'count' is same as `state => state.count`
+    countAlias: 'count',
+    // to access local state with `this`, a normal function must be used
+    countPlusLocalState (state) {
+      return state.count + this.localCount
+    }
+  })
+}
+```
+
+We can also pass a string array to `mapState` when the name of a mapped computed property is the same as a state sub tree name.
+
+```js
+import { mapState } from '@storeon/vue/helpers'
+
+export default {
+  computed: mapState([
+    // map this.count to storeon.state.count
+    'count'
+  ])
+}
+```
+
+### The `mapDispatch` Helper
+
+You can dispatch actions in components with `this.$storeon.dispatch('xxx')`, or use the `mapDispatch` helper which maps component methods to `store.dispatch` calls:
+
+```js
+import { mapDispatch } from '@storeon/vue/helpers'
+
+export default {
+  methods: {
+    ...mapDispatch([
+      // map `this.inc()` to `this.$storeon.dispatch('increment')`
+      'inc',
+      // map `this.incBy(amount)` to `this.$storeon.dispatch('incBy', amount)`
+      'incBy'
+    ]),
+    ...mapDispatch({
+      // map `this.add()` to `this.$storeon.dispatch('inc')`
+      add: 'inc'
+    })
+  }
+}
+
+```
+
 ## Using with TypeScript
 
-Plugin add to Vue’s global/instance properties and component options. In these cases, type declarations are needed to make plugins compile in TypeScript. We can declare an instance property `$storeon` and `$state` with type `StoreonStore<State, Events>`. You can also declare component options `store`:
+Plugin add to Vue’s global/instance properties and component options. In these cases, type declarations are needed to make plugins compile in TypeScript. We can declare an instance property `$storeon` with type `StoreonStore<State, Events>`. You can also declare component options `store`:
 
 #### `typing.d.ts`
 
 ```ts
 import Vue, { ComponentOptions } from 'vue'
 import { StoreonStore } from 'storeon'
+import { StoreonVueStore } from '@storeon/vue'
 import { State, Events } from './store'
 
 declare module 'vue/types/options' {
@@ -116,8 +175,20 @@ declare module 'vue/types/options' {
 
 declare module 'vue/types/vue' {
   interface Vue {
-    $storeon: StoreonStore<State, Events>;
-    $state: State;
+    $storeon: StoreonVueStore<State, Events>;
   }
 }
+```
+
+To let TypeScript properly infer types inside Vue component options, you need to define components with `Vue.component` or `Vue.extend`:
+
+```diff
+-export default {
++export default Vue.extend({
+  methods: {
+    inc() {
+      this.$storeon.dispatch('inc')
+    }
+  }
+};
 ```

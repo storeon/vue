@@ -4,7 +4,7 @@ const { mountComponent, ComponentWithChild, Child } = require('./utils')
 
 it('should render with initial state', () => {
   let { store, wrapper } = mountComponent()
-  expect(wrapper.vm.$state).toEqual(store.get())
+  expect(wrapper.vm.$storeon.state).toEqual(store.get())
 })
 
 it('should provide Storeon', () => {
@@ -21,13 +21,13 @@ it('should unsubscribe only on root destroy', () => {
   let child = wrapper.find(Child)
 
   store.dispatch('inc')
-  expect(wrapper.vm.$state.count).toBe(1)
+  expect(wrapper.vm.$storeon.state.count).toBe(1)
   child.destroy()
   store.dispatch('inc')
-  expect(wrapper.vm.$state.count).toBe(2)
+  expect(wrapper.vm.$storeon.state.count).toBe(2)
   wrapper.destroy()
   store.dispatch('inc')
-  expect(wrapper.vm.$state.count).toBe(2)
+  expect(wrapper.vm.$storeon.state.count).toBe(2)
 })
 
 it('should update view on dispatch', async () => {

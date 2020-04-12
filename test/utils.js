@@ -4,16 +4,16 @@ const { createStoreon } = require('storeon')
 const { StoreonVue } = require('../')
 
 const Component = {
-  template: '<div>{{$state.count}}</div>'
+  template: '<div>{{$storeon.state.count}}</div>'
 }
 
 const Child = {
   name: 'Child',
-  template: '<div>{{$state.foo}}</div>'
+  template: '<div>{{$storeon.state.foo}}</div>'
 }
 
 const ComponentWithChild = {
-  template: '<div>{{$state.count}}<Child /></div>',
+  template: '<div>{{$storeon.state.count}}<Child /></div>',
   components: { Child }
 }
 
@@ -41,4 +41,10 @@ function mountComponent ({ store, component } = {}) {
   return { wrapper, store, updated }
 }
 
-module.exports = { mountComponent, ComponentWithChild, Component, Child }
+module.exports = {
+  mountComponent,
+  ComponentWithChild,
+  Component,
+  Child,
+  createStore
+}
