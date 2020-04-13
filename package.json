@@ -27,7 +27,8 @@
   "files": [
     "index.d.ts",
     "helpers/",
-    "class/"
+    "class/",
+    "composition/"
   ],
   "sideEffects": false,
   "peerDependencies": {
