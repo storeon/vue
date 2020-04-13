@@ -2,6 +2,9 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.1.0
+- Add support for Composition API ([6e77e0](https://github.com/storeon/vue/commit/3e65191fa4d8586c1197a64852b0cb39d6fe6fdf))
+
 ## 1.0.0
 - Add support for Class Components ([6e77e0](https://github.com/storeon/vue/commit/6e77e000118f52aa8506a70e583f19a192080d63))
 - Add helper functions ([532121](https://github.com/storeon/vue/commit/532121764a7fa5e61d37e3f8325eccfea4deebf9))
