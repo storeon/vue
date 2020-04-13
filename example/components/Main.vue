@@ -1,11 +1,11 @@
 <template>
-  <section class="main" v-if="$state.todos.length > 0">
+  <section class="main" v-if="todosLength > 0">
     <input
       id="toggle-all"
       class="toggle-all"
       type="checkbox"
       @change="handleCompleteAll"
-      :checked="numCompleted === $state.todos.length"
+      :checked="numCompleted === todosLength"
     >
     <label for="toggle-all">Mark all as complete</label>
 
@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import { mapState, mapDispatch } from '../../helpers'
 import Footer from "./Footer.vue";
 import TodoItem from "./TodoItem.vue";
 import { SHOW_ALL, SHOW_COMPLETED } from "../constants/TodoFilters";
@@ -33,31 +34,20 @@ export default {
     Footer,
     TodoItem
   },
-  computed: {
-    numCompleted() {
-      return this.$state.todos.filter(todo => todo.completed).length;
-    },
-    filtered() {
-      return this.$state.filter === SHOW_ALL
-        ? this.$state.todos
-        : this.$state.filter === SHOW_COMPLETED
-        ? this.$state.todos.filter(todo => todo.completed)
-        : this.$state.todos.filter(todo => !todo.completed);
-    }
-  },
-  methods: {
-    handleDelete(id) {
-      this.$storeon.dispatch("todo/delete", id);
-    },
-    handleEdit(event) {
-      this.$storeon.dispatch("todo/edit", { ...event });
-    },
-    handleComplete(id) {
-      this.$storeon.dispatch("todo/complete", id);
-    },
-    handleCompleteAll() {
-      this.$storeon.dispatch("todo/complete_all");
-    }
-  }
+  computed: mapState({
+    todosLength: state => state.todos.length,
+    numCompleted: state => state.todos.filter(todo => todo.completed).length,
+    filtered: state => state.filter === SHOW_ALL
+      ? state.todos
+      : state.filter === SHOW_COMPLETED
+      ? state.todos.filter(todo => todo.completed)
+      : state.todos.filter(todo => !todo.completed),
+  }),
+  methods: mapDispatch({
+    handleDelete: "todo/delete",
+    handleEdit: "todo/edit",
+    handleComplete: "todo/complete",
+    handleCompleteAll: "todo/complete_all"
+  })
 };
 </script>

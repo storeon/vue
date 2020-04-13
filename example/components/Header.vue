@@ -11,12 +11,17 @@
 </template>
 
 <script>
+import { mapState, mapDispatch } from '../../helpers'
+
 export default {
   methods: {
+    ...mapDispatch({
+      addTodo: "todo/add"
+    }),
     handleKeydown(event) {
       const value = event.target.value.trim();
       if (value) {
-        this.$storeon.dispatch("todo/add", value);
+        this.addTodo(value);
         event.target.value = "";
       }
     }
