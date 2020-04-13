@@ -4,8 +4,18 @@ const { createStore } = require('./utils')
 const { StoreonVue } = require('../index')
 const { mapState, mapDispatch } = require('../helpers')
 
+let warn
+
 beforeAll(() => {
   Vue.use(StoreonVue)
+})
+
+beforeEach(() => {
+  warn = jest.spyOn(global.console, 'error').mockImplementation(() => null)
+})
+
+afterEach(() => {
+  warn.mockRestore()
 })
 
 it('mapState (array)', () => {
