@@ -203,6 +203,57 @@ export default class extends Vue {
 </script>
 ```
 
+## Using with Composition API
+
+Instead of using `StoreonVue` mixin to provide store, you can use `provideStoreon` from `@storeon/vue/composition`
+
+```js
+import Vue from 'vue'
+import VueCompositionApi from '@vue/composition-api'
+import { provideStoreon } from '@storeon/vue/composition'
+import App from './App.vue'
+import { store } from './store'
+
+Vue.use(VueCompositionApi)
+Vue.use(provideStoreon(store))
+
+new Vue({
+  render: h => h(App)
+}).$mount('#app')
+```
+
+Use `useStoreon` hook to get state and dispatch function
+
+```html
+<template>
+  <div>
+    <h1>The count is {{count}}</h1>
+    <button @click="dec">-</button>
+    <button @click="inc">+</button>
+  </div>
+</template>
+
+<script>
+import { defineComponent } from '@vue/composition-api'
+import { useStoreon } from '@storeon/vue/composition'
+
+export default defineComponent({
+  setup() {
+    const { count, dispatch } = useStoreon()
+
+    function inc() {
+      dispatch('inc')
+    }
+    function dec() {
+      dispatch('dec')
+    }
+
+    return { count, inc, dec }
+  }
+});
+</script>
+```
+
 ## Using with TypeScript
 
 Plugin adds to Vue’s global/instance properties and component options. In these cases, type declarations are needed to make plugins compile in TypeScript. We can declare an instance property `$storeon` with type `StoreonStore<State, Events>`. You can also declare a component options `store`:
