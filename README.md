@@ -296,6 +296,6 @@ To let TypeScript properly infer types inside Vue component options, you need to
 
 ```json
 {
-  "vetur.experimental.templateInterpolationService": false
+  "vetur.experimental.templateInterpolationService": true
 }
 ```
