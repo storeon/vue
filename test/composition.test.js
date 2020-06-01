@@ -16,12 +16,15 @@ beforeEach(() => {
 })
 
 it('should provide store', async () => {
-  let wrapper = mount({
-    template: '<div></div>',
-    setup () {
-      return useStoreon()
-    }
-  }, { localVue })
+  let wrapper = mount(
+    {
+      template: '<div></div>',
+      setup () {
+        return useStoreon()
+      }
+    },
+    { localVue }
+  )
 
   expect(wrapper.vm.count).toBe(0)
   wrapper.vm.dispatch('inc')
@@ -32,13 +35,16 @@ it('should provide store', async () => {
 it('should not emit extra updates', async () => {
   let spyOnUpdate = jest.fn()
 
-  let wrapper = mount({
-    template: '<div>{{count}}</div>',
-    setup () {
-      onUpdated(spyOnUpdate)
-      return useStoreon()
-    }
-  }, { localVue })
+  let wrapper = mount(
+    {
+      template: '<div>{{count}}</div>',
+      setup () {
+        onUpdated(spyOnUpdate)
+        return useStoreon()
+      }
+    },
+    { localVue }
+  )
 
   wrapper.vm.dispatch('inc')
   await Vue.nextTick()

@@ -15,10 +15,8 @@ it('should provide Storeon', () => {
 })
 
 it('should unsubscribe only on root destroy', () => {
-  let { wrapper, store } = mountComponent(
-    { component: ComponentWithChild }
-  )
-  let child = wrapper.find(Child)
+  let { wrapper, store } = mountComponent({ component: ComponentWithChild })
+  let child = wrapper.findComponent(Child)
 
   store.dispatch('inc')
   expect(wrapper.vm.$storeon.state.count).toBe(1)
@@ -40,10 +38,10 @@ it('should update view on dispatch', async () => {
 })
 
 it('should rerenders only changed states', async () => {
-  let { wrapper, store, updated } = mountComponent(
-    { component: ComponentWithChild }
-  )
-  let child = wrapper.find(Child)
+  let { wrapper, store, updated } = mountComponent({
+    component: ComponentWithChild
+  })
+  let child = wrapper.findComponent(Child)
 
   expect(child.text()).toBe('baz')
   store.dispatch('foo/set', 'foobaz')

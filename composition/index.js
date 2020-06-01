@@ -14,7 +14,7 @@ function useStoreon () {
   if (process.env.NODE_ENV !== 'production' && !store) {
     throw new Error(
       'Could not find storeon context value. ' +
-      'Please ensure you provide store using "provideStoreon" function'
+        'Please ensure you provide store using "provideStoreon" function'
     )
   }
 
@@ -22,22 +22,23 @@ function useStoreon () {
 }
 
 function provideStoreon (store) {
-  return Vue => Vue.mixin({
-    setup () {
-      let state = reactive(store.get())
+  return Vue =>
+    Vue.mixin({
+      setup () {
+        let state = reactive(store.get())
 
-      provide(STORE_KEY, {
-        ...toRefs(state),
-        dispatch: store.dispatch
-      })
+        provide(STORE_KEY, {
+          ...toRefs(state),
+          dispatch: store.dispatch
+        })
 
-      let unbind = store.on('@changed', (_, changed) => {
-        Object.assign(state, changed)
-      })
+        let unbind = store.on('@changed', (_, changed) => {
+          Object.assign(state, changed)
+        })
 
-      onBeforeUnmount(unbind)
-    }
-  })
+        onBeforeUnmount(unbind)
+      }
+    })
 }
 
 module.exports = { provideStoreon, useStoreon }
