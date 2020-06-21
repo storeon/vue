@@ -2,6 +2,9 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.0
+- Drop support for storeon < v3 and node < v10 ([a9a27c](https://github.com/storeon/vue/commit/a9a27c3ca76e678b11748eb7a56fc91b750d0d3c))
+
 ## 1.1.0
 - Add support for Composition API ([6e77e0](https://github.com/storeon/vue/commit/3e65191fa4d8586c1197a64852b0cb39d6fe6fdf))
 
