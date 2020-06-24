@@ -1,6 +1,6 @@
 {
   "name": "@storeon/vue",
-  "version": "2.0.0",
+  "version": "3.0.0-beta.1",
   "description": "A tiny (160 bytes) connector for Storeon and Vue",
   "main": "index.js",
   "types": "index.d.ts",
@@ -31,17 +31,15 @@
     "composition/"
   ],
   "sideEffects": false,
+  "dependencies": {
+    "vue": "^3.0.0-beta.15"
+  },
   "peerDependencies": {
-    "@vue/composition-api": "^0.5.0",
     "storeon": "^3.0.0",
-    "vue": "^2.6.0",
-    "vue-class-component": "^6.0.0 || ^7.0.0"
+    "vue-class-component": "^8.0.0-alpha.6"
   },
   "peerDependenciesMeta": {
     "vue-class-component": {
-      "optional": true
-    },
-    "@vue/composition-api": {
       "optional": true
     }
   },
@@ -52,9 +50,7 @@
     "@logux/eslint-config": "^39.0.3",
     "@size-limit/dual-publish": "^4.5.1",
     "@size-limit/preset-small-lib": "^4.5.1",
-    "@vue/component-compiler-utils": "^3.1.2",
-    "@vue/composition-api": "^0.6.5",
-    "@vue/test-utils": "^1.0.3",
+    "@vue/test-utils": "^2.0.0-alpha.6",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.0.1",
     "dual-publish": "^0.10.5",
@@ -72,13 +68,11 @@
     "husky": "^4.2.5",
     "jest": "^26.0.1",
     "lint-staged": "^10.2.11",
-    "parcel-bundler": "^1.12.4",
+    "parcel": "^2.0.0-beta.1",
     "size-limit": "^4.5.1",
     "storeon": "^3.0.1",
-    "vue": "^2.6.11",
-    "vue-class-component": "^7.2.3",
-    "vue-hot-reload-api": "^2.3.4",
-    "vue-template-compiler": "^2.6.11"
+    "vue": "^3.0.0-beta.15",
+    "vue-class-component": "^8.0.0-alpha.6"
   },
   "lint-staged": {
     "*.js": [
