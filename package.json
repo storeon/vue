@@ -27,15 +27,12 @@
   "files": [
     "index.d.ts",
     "helpers/",
-    "class/",
-    "composition/"
+    "class/"
   ],
   "sideEffects": false,
-  "dependencies": {
-    "vue": "^3.0.0-beta.15"
-  },
   "peerDependencies": {
     "storeon": "^3.0.0",
+    "vue": "^3.0.0-beta.15",
     "vue-class-component": "^8.0.0-alpha.6"
   },
   "peerDependenciesMeta": {
@@ -92,8 +89,9 @@
     {
       "name": "core",
       "import": {
-        "index.js": "{ StoreonVue }"
+        "index.js": "{ provideStoreon, useStoreon }"
       },
+      "ignore": ["vue"],
       "limit": "160 B"
     },
     {
@@ -102,6 +100,7 @@
         "index.js": "{ StoreonVue }",
         "helpers/index.js": "{ mapState, mapDispatch }"
       },
+      "ignore": ["vue"],
       "limit": "342 B"
     },
     {
@@ -110,14 +109,8 @@
         "index.js": "{ StoreonVue }",
         "class/index.js": "{ State, Dispatch }"
       },
+      "ignore": ["vue"],
       "limit": "447 B"
-    },
-    {
-      "name": "composition",
-      "import": {
-        "composition/index.js": "{ provideStoreon, useStoreon }"
-      },
-      "limit": "175 B"
     }
   ],
   "eslintConfig": {
