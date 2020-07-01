@@ -47,7 +47,6 @@
     "@logux/eslint-config": "^39.0.3",
     "@size-limit/dual-publish": "^4.5.1",
     "@size-limit/preset-small-lib": "^4.5.1",
-    "@vue/test-utils": "^2.0.0-alpha.6",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.0.1",
     "dual-publish": "^0.10.5",
@@ -91,7 +90,9 @@
       "import": {
         "index.js": "{ provideStoreon, useStoreon }"
       },
-      "ignore": ["vue"],
+      "ignore": [
+        "vue"
+      ],
       "limit": "160 B"
     },
     {
@@ -100,7 +101,9 @@
         "index.js": "{ StoreonVue }",
         "helpers/index.js": "{ mapState, mapDispatch }"
       },
-      "ignore": ["vue"],
+      "ignore": [
+        "vue"
+      ],
       "limit": "342 B"
     },
     {
@@ -109,7 +112,9 @@
         "index.js": "{ StoreonVue }",
         "class/index.js": "{ State, Dispatch }"
       },
-      "ignore": ["vue"],
+      "ignore": [
+        "vue"
+      ],
       "limit": "447 B"
     }
   ],
