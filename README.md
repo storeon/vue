@@ -36,16 +36,12 @@ yarn add @storeon/vue
 
 ## How to use ([Demo])
 
-Create a store with `storeon` as you do it usually. You must explicitly install `@storeon/vue` via `Vue.use()`.
+Create a store with `storeon` as you do it usually. You must explicitly install plugin `@storeon/vue` via `app.use()`.
 
 #### `store.js`
 
 ```js
-import Vue from 'vue'
 import { createStoreon } from 'storeon'
-import { StoreonVue } from '@storeon/vue'
-
-Vue.use(StoreonVue)
 
 let counter = store => {
   store.on('@init', () => ({ count: 0 }))
@@ -61,14 +57,16 @@ export const store = createStoreon([counter])
 Library provides a mechanism to "inject" the store into all child components from the root component with the `store` option:
 
 ```js
-import Vue from 'vue'
+import { createApp } from 'vue'
+import { createStoreonPlugin } from '@storeon/vue'
 import App from './App.vue'
 import { store } from './store'
 
-new Vue({
-  store,
-  render: h => h(App)
-}).$mount('#app')
+const app = createApp(App)
+
+app.use(createStoreonPlugin(store))
+
+app.mount('#app')
 ```
 
 By providing the `store` option to the root instance, the store will be injected
@@ -96,6 +94,40 @@ export default {
     }
   }
 };
+</script>
+```
+
+Or use Composition API with `useStoreon` hook to get state and dispatch function
+
+#### `App.vue`
+
+```html
+<template>
+  <div>
+    <h1>The count is {{count}}</h1>
+    <button @click="dec">-</button>
+    <button @click="inc">+</button>
+  </div>
+</template>
+
+<script>
+import { defineComponent } from 'vue'
+import { useStoreon } from '@storeon/vue'
+
+export default defineComponent({
+  setup() {
+    const { count, dispatch } = useStoreon()
+
+    function inc() {
+      dispatch('inc')
+    }
+    function dec() {
+      dispatch('dec')
+    }
+
+    return { count, inc, dec }
+  }
+});
 </script>
 ```
 
@@ -159,131 +191,24 @@ export default {
 
 ## Using with Class Components
 
-You can specify component options object to `@Component` decorator, so you can just use these helpers.
-
-```html
-<template>
-  <div>
-    <h1>The count is {{bar}}</h1>
-    <button @click="dec">-</button>
-    <button @click="inc">+</button>
-  </div>
-</template>
-
-<script>
-import Vue from 'vue'
-import Component from 'vue-class-component'
-import { mapState, mapDispatch } from '@storeon/vue/helpers'
-
-@Component({
-  computed: mapState({
-    bar: state => state.count
-  }),
-  methods: mapDispatch([
-    'inc', 'dec'
-  ])
-})
-export default class extends Vue { }
-</script>
-```
-
 If you would like to write as more class-like style, use decorators from `@storeon/vue/class`
 
 ```js
-import Vue from 'vue'
-import Component from 'vue-class-component'
+import { Vue } from 'vue-class-component'
 import { State, Dispatch } from '@storeon/vue/class'
 
-@Component
 export default class extends Vue {
   @State count
   @Dispatch('inc') inc
   @Dispatch('dec') dec
 }
-</script>
 ```
 
-## Using with Composition API
-
-Instead of using `StoreonVue` mixin to provide store, you can use `provideStoreon` from `@storeon/vue/composition`
-
-```js
-import Vue from 'vue'
-import VueCompositionApi from '@vue/composition-api'
-import { provideStoreon } from '@storeon/vue/composition'
-import App from './App.vue'
-import { store } from './store'
-
-Vue.use(VueCompositionApi)
-Vue.use(provideStoreon(store))
-
-new Vue({
-  render: h => h(App)
-}).$mount('#app')
-```
-
-Use `useStoreon` hook to get state and dispatch function
-
-```html
-<template>
-  <div>
-    <h1>The count is {{count}}</h1>
-    <button @click="dec">-</button>
-    <button @click="inc">+</button>
-  </div>
-</template>
-
-<script>
-import { defineComponent } from '@vue/composition-api'
-import { useStoreon } from '@storeon/vue/composition'
-
-export default defineComponent({
-  setup() {
-    const { count, dispatch } = useStoreon()
-
-    function inc() {
-      dispatch('inc')
-    }
-    function dec() {
-      dispatch('dec')
-    }
-
-    return { count, inc, dec }
-  }
-});
-</script>
-```
-
-## Using with TypeScript
-
-Plugin adds to Vue’s global/instance properties and component options. In these cases, type declarations are needed to make plugins compile in TypeScript. We can declare an instance property `$storeon` with type `StoreonStore<State, Events>`. You can also declare a component options `store`:
-
-#### `typing.d.ts`
-
-```ts
-import Vue, { ComponentOptions } from 'vue'
-import { StoreonStore } from 'storeon'
-import { StoreonVueStore } from '@storeon/vue'
-import { State, Events } from './store'
-
-declare module 'vue/types/options' {
-  interface ComponentOptions<V extends Vue> {
-    store: StoreonStore<State, Events>;
-  }
-}
-
-declare module 'vue/types/vue' {
-  interface Vue {
-    $storeon: StoreonVueStore<State, Events>;
-  }
-}
-```
-
-To let TypeScript properly infer types inside Vue component options, you need to define components with `Vue.component` or `Vue.extend`:
+To let TypeScript properly infer types inside Vue component options, you need to define components with `defineComponent` function:
 
 ```diff
 -export default {
-+export default Vue.extend({
++export default defineComponent({
   methods: {
     inc() {
       this.$storeon.dispatch('inc')
