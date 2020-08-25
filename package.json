@@ -32,10 +32,10 @@
   ],
   "sideEffects": false,
   "peerDependencies": {
-    "@vue/composition-api": "^0.6.7",
-    "storeon": "^3.0.3",
-    "vue": "^2.6.12",
-    "vue-class-component": "^7.2.5"
+    "@vue/composition-api": "^0.5.0",
+    "storeon": "^3.0.0",
+    "vue": "^2.6.0",
+    "vue-class-component": "^6.0.0 || ^7.0.0"
   },
   "peerDependenciesMeta": {
     "vue-class-component": {
