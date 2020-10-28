@@ -1,24 +1,39 @@
-function StoreonVue (Vue) {
-  Vue.mixin({
-    beforeCreate () {
-      let store = this.$options.store
-      let parent = this.$options.parent
+const { reactive, inject } = require('vue')
 
-      if (store) {
-        this.$storeon = store
-        this.$storeon.state = Vue.observable(store.get())
+const STORE_KEY = 'storeon'
 
-        this._unbind = store.on('@changed', (_, changed) => {
-          Object.assign(this.$storeon.state, changed)
-        })
-      } else if (parent && parent.$storeon) {
-        this.$storeon = parent.$storeon
+function createStoreonPlugin (store) {
+  return {
+    install (app) {
+      if (process.env.NODE_ENV !== 'production' && !store) {
+        throw new Error(
+          'Please provide store to the "createStoreonPlugin" function'
+        )
       }
-    },
-    beforeDestroy () {
-      this._unbind && this._unbind()
+
+      store.state = reactive(store.get())
+
+      app.provide(STORE_KEY, store)
+      app.config.globalProperties.$storeon = store
+
+      store.on('@changed', newState => {
+        Object.assign(store.state, newState)
+      })
     }
-  })
+  }
 }
 
-module.exports = { StoreonVue }
+function useStoreon () {
+  let store = inject(STORE_KEY)
+
+  if (process.env.NODE_ENV !== 'production' && !store) {
+    throw new Error(
+      'Could not find storeon context value. ' +
+        'Make sure you provide store using "createStoreonPlugin" function'
+    )
+  }
+
+  return store
+}
+
+module.exports = { createStoreonPlugin, useStoreon }

@@ -1,6 +1,6 @@
 {
   "name": "@storeon/vue",
-  "version": "2.0.0",
+  "version": "3.0.0-beta.1",
   "description": "A tiny (160 bytes) connector for Storeon and Vue",
   "main": "index.js",
   "types": "index.d.ts",
@@ -27,58 +27,47 @@
   "files": [
     "index.d.ts",
     "helpers/",
-    "class/",
-    "composition/"
+    "class/"
   ],
   "sideEffects": false,
   "peerDependencies": {
-    "@vue/composition-api": "^0.5.0",
     "storeon": "^3.0.0",
-    "vue": "^2.6.0",
-    "vue-class-component": "^6.0.0 || ^7.0.0"
+    "vue": "^3.0.0",
+    "vue-class-component": "^8.0.0-beta.4"
   },
   "peerDependenciesMeta": {
     "vue-class-component": {
       "optional": true
-    },
-    "@vue/composition-api": {
-      "optional": true
     }
   },
   "devDependencies": {
-    "@babel/core": "^7.11.4",
-    "@babel/plugin-proposal-class-properties": "^7.10.4",
-    "@babel/plugin-proposal-decorators": "^7.10.5",
-    "@logux/eslint-config": "^40.0.3",
-    "@size-limit/dual-publish": "^4.5.7",
-    "@size-limit/preset-small-lib": "^4.5.7",
-    "@vue/component-compiler-utils": "^3.2.0",
-    "@vue/composition-api": "^0.6.5",
-    "@vue/test-utils": "^1.0.4",
+    "@babel/core": "^7.12.3",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-proposal-decorators": "^7.12.1",
+    "@logux/eslint-config": "^41.0.2",
+    "@size-limit/dual-publish": "^4.7.0",
+    "@size-limit/preset-small-lib": "^4.7.0",
     "babel-eslint": "^10.1.0",
-    "babel-jest": "^26.3.0",
+    "babel-jest": "^26.6.1",
     "dual-publish": "^0.11.0",
-    "eslint": "^7.7.0",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-jest": "^23.20.0",
+    "eslint": "^7.12.1",
+    "eslint-config-standard": "^15.0.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.1.0",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prefer-let": "^1.0.2",
+    "eslint-plugin-prefer-let": "^1.1.0",
     "eslint-plugin-prettierx": "^0.14.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-security": "^1.4.0",
-    "eslint-plugin-standard": "^4.0.1",
-    "eslint-plugin-unicorn": "^21.0.0",
-    "husky": "^4.2.5",
-    "jest": "^26.4.2",
-    "lint-staged": "^10.2.11",
-    "parcel-bundler": "^1.12.4",
-    "size-limit": "^4.5.7",
-    "storeon": "^3.0.1",
-    "vue": "^2.6.12",
-    "vue-class-component": "^7.2.3",
-    "vue-hot-reload-api": "^2.3.4",
-    "vue-template-compiler": "^2.6.12"
+    "eslint-plugin-standard": "^4.0.2",
+    "eslint-plugin-unicorn": "^23.0.0",
+    "husky": "^4.3.0",
+    "jest": "^26.6.1",
+    "lint-staged": "^10.5.0",
+    "size-limit": "^4.7.0",
+    "storeon": "^3.1.1",
+    "vue": "^3.0.2",
+    "vue-class-component": "^8.0.0-beta.4"
   },
   "lint-staged": {
     "*.js": [
@@ -98,8 +87,11 @@
     {
       "name": "core",
       "import": {
-        "index.js": "{ StoreonVue }"
+        "index.js": "{ provideStoreon, useStoreon }"
       },
+      "ignore": [
+        "vue"
+      ],
       "limit": "160 B"
     },
     {
@@ -108,6 +100,9 @@
         "index.js": "{ StoreonVue }",
         "helpers/index.js": "{ mapState, mapDispatch }"
       },
+      "ignore": [
+        "vue"
+      ],
       "limit": "342 B"
     },
     {
@@ -116,14 +111,10 @@
         "index.js": "{ StoreonVue }",
         "class/index.js": "{ State, Dispatch }"
       },
+      "ignore": [
+        "vue"
+      ],
       "limit": "447 B"
-    },
-    {
-      "name": "composition",
-      "import": {
-        "composition/index.js": "{ provideStoreon, useStoreon }"
-      },
-      "limit": "175 B"
     }
   ],
   "eslintConfig": {

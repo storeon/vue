@@ -1,20 +1,16 @@
-const { mount, createLocalVue } = require('@vue/test-utils')
+const { createApp } = require('vue')
 const { createStoreon } = require('storeon')
 
-const { StoreonVue } = require('../')
+function mount (store, component = {}) {
+  let el = createElement()
 
-const Component = {
-  template: '<div>{{$storeon.state.count}}</div>'
-}
+  component.render = () => {}
 
-const Child = {
-  name: 'Child',
-  template: '<div>{{$storeon.state.foo}}</div>'
-}
+  let app = createApp(component)
 
-const ComponentWithChild = {
-  template: '<div>{{$storeon.state.count}}<Child /></div>',
-  components: { Child }
+  app.use(store)
+
+  return app.mount(el)
 }
 
 function createStore () {
@@ -23,28 +19,16 @@ function createStore () {
     storeon.on('inc', ({ count }) => ({ count: count + 1 }))
     storeon.on('foo/set', (_, data) => ({ foo: data }))
   }
+
   return createStoreon([counter])
 }
 
-function mountComponent ({ store, component } = {}) {
-  store = store || createStore()
-  component = component || Component
+module.exports = { mount, createStore }
 
-  let updated = jest.fn()
-  jest.spyOn(store, 'get')
-  jest.spyOn(store, 'on')
+function createElement () {
+  let el = document.createElement('div')
 
-  let localVue = createLocalVue()
-  localVue.use(StoreonVue)
-  let wrapper = mount(component, { localVue, store, updated })
+  document.body.appendChild(el)
 
-  return { wrapper, store, updated }
-}
-
-module.exports = {
-  mountComponent,
-  ComponentWithChild,
-  Component,
-  Child,
-  createStore
+  return el
 }

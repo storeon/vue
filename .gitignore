@@ -2,6 +2,7 @@ npm-debug.log
 yarn-error.log
 
 .cache/
+.parcel-cache/
 node_modules/
 dist/
 coverage/

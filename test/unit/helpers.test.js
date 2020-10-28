@@ -1,14 +1,8 @@
-const Vue = require('vue')
-
-const { createStore } = require('./utils')
-const { StoreonVue } = require('../index')
-const { mapState, mapDispatch } = require('../helpers')
+const { createStore, mount } = require('../utils')
+const { mapState, mapDispatch } = require('../../helpers')
+const { createStoreonPlugin } = require('../../index')
 
 let warn
-
-beforeAll(() => {
-  Vue.use(StoreonVue)
-})
 
 beforeEach(() => {
   warn = jest.spyOn(global.console, 'error').mockImplementation(() => null)
@@ -20,8 +14,8 @@ afterEach(() => {
 
 it('mapState (array)', () => {
   let store = createStore()
-  let vm = new Vue({
-    store,
+
+  let vm = mount(createStoreonPlugin(store), {
     computed: mapState(['count'])
   })
   expect(vm.count).toBe(0)
@@ -31,8 +25,7 @@ it('mapState (array)', () => {
 
 it('mapState (object)', () => {
   let store = createStore()
-  let vm = new Vue({
-    store,
+  let vm = mount(createStoreonPlugin(store), {
     computed: mapState({
       a: state => {
         return state.count + 1
@@ -47,8 +40,7 @@ it('mapState (object)', () => {
 it('mapState (with undefined states)', () => {
   jest.spyOn(console, 'error')
   let store = createStore()
-  let vm = new Vue({
-    store,
+  let vm = mount(createStoreonPlugin(store), {
     computed: mapState('foo')
   })
   expect(vm.count).toBeUndefined()
@@ -60,8 +52,7 @@ it('mapState (with undefined states)', () => {
 it('mapDispatch (array)', () => {
   let store = createStore()
   jest.spyOn(store, 'dispatch')
-  let vm = new Vue({
-    store,
+  let vm = mount(createStoreonPlugin(store), {
     methods: mapDispatch(['inc', 'foo/set'])
   })
   vm.inc()
@@ -74,8 +65,7 @@ it('mapDispatch (array)', () => {
 it('mapDispatch (object)', () => {
   let store = createStore()
   jest.spyOn(store, 'dispatch')
-  let vm = new Vue({
-    store,
+  let vm = mount(createStoreonPlugin(store), {
     methods: mapDispatch({
       foo: 'inc',
       bar: 'foo/set'
@@ -92,8 +82,7 @@ it('mapDispatch (object)', () => {
 it('mapDispatch (function)', () => {
   let store = createStore()
   jest.spyOn(store, 'dispatch')
-  let vm = new Vue({
-    store,
+  let vm = mount(createStoreonPlugin(store), {
     methods: mapDispatch({
       foo (dispatch, arg) {
         dispatch('a', arg + 'bar')
@@ -108,7 +97,7 @@ it('mapDispatch (with undefined actions)', () => {
   jest.spyOn(console, 'error')
   let store = createStore()
   jest.spyOn(store, 'dispatch')
-  let vm = new Vue({
+  let vm = mount(createStoreonPlugin(store), {
     store,
     methods: mapDispatch('inc')
   })
