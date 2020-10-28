@@ -2,6 +2,27 @@
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.0.0-beta.2
+
+### Breaking Changes
+
+#### Installation process has changed
+
+To install StoreonVue to Vue app instance, pass the store instance to `createStoreonPlugin` function.
+
+```js
+import { createApp } from 'vue'
+import { createStoreonPlugin } from '@storeon/vue'
+import App from './App.vue'
+import { store } from './store'
+
+const app = createApp(App)
+
+app.use(createStoreonPlugin(store))
+
+app.mount('#app')
+```
+
 ## 2.0.0
 - Drop support for storeon < v3 and node < v10 ([a9a27c](https://github.com/storeon/vue/commit/a9a27c3ca76e678b11748eb7a56fc91b750d0d3c))
 
