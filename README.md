@@ -49,6 +49,7 @@ let counter = store => {
   store.on('@init', () => ({ count: 0 }))
   store.on('inc', ({ count }) => ({ count: count + 1 }))
   store.on('dec', ({ count }) => ({ count: count - 1 }))
+  store.on('incBy', ({ count }, amount) => ({ count: count + amount }))
 }
 
 export const store = createStoreon([counter])
@@ -178,7 +179,7 @@ import { mapDispatch } from '@storeon/vue/helpers'
 export default {
   methods: {
     ...mapDispatch([
-      // map `this.inc()` to `this.$storeon.dispatch('increment')`
+      // map `this.inc()` to `this.$storeon.dispatch('inc')`
       'inc',
       // map `this.incBy(amount)` to `this.$storeon.dispatch('incBy', amount)`
       'incBy'
