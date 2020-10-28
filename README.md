@@ -116,7 +116,8 @@ import { useStoreon } from '@storeon/vue'
 
 export default defineComponent({
   setup() {
-    const { count, dispatch } = useStoreon()
+    const { state, dispatch } = useStoreon()
+    const { count } = state;
 
     function inc() {
       dispatch('inc')
@@ -204,6 +205,25 @@ export default class extends Vue {
 }
 ```
 
+## Using with TypeScript
+
+Plugin adds to Vue’s global/instance properties and component options. In these cases, type declarations are needed to make plugins compile in TypeScript. We can declare an instance property `$storeon` with type `StoreonStore<State, Events>`. You can also declare a component options `store`:
+
+#### `typing.d.ts`
+
+```ts
+import { ComponentCustomProperties } from 'vue'
+import { StoreonStore } from 'storeon'
+import { StoreonVueStore } from '@storeon/vue'
+import { State, Events } from './store'
+
+declare module '@vue/runtime-core' {
+  interface ComponentCustomProperties {
+    $storeon: StoreonVueStore<State, Events>
+  }
+}
+```
+
 To let TypeScript properly infer types inside Vue component options, you need to define components with `defineComponent` function:
 
 ```diff
@@ -224,3 +244,5 @@ To let TypeScript properly infer types inside Vue component options, you need to
   "vetur.experimental.templateInterpolationService": true
 }
 ```
+## TODO
+- Add examples
