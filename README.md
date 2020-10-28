@@ -5,6 +5,8 @@
 
 <img src="https://storeon.github.io/storeon/logo.svg" align="right" alt="Storeon logo by Anton Lovchikov" width="160" height="142">
 
+**This is the Vue 3 compatible version of the package. For the Vue 2 support, see the [2.0 branch](https://github.com/storeon/vue/tree/2.0).**
+
 [Storeon] is a tiny event-based Redux-like state manager without dependencies. `@storeon/vue` package helps to connect store with [Vue] to provide a better performance and developer experience while remaining so tiny.
 
 - **Size**. 160 bytes (+ Storeon itself) instead of ~3kB of [Vuex] (minified and gzipped).
