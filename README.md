@@ -29,11 +29,11 @@ Read more about Storeon [article].
 ## Install
 
 ```sh
-npm install @storeon/vue -S
+npm install @storeon/vue@2 -S
 ```
 or
 ```sh
-yarn add @storeon/vue
+yarn add @storeon/vue@2
 ```
 
 ## How to use ([Demo])
